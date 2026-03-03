@@ -30,22 +30,25 @@ if [[ $# -lt 1 ]]; then
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-GET_ORIGIN_SCRIPT="${SCRIPT_DIR}/get_origin.sh"
+GET_REMOTE_SCRIPT="${SCRIPT_DIR}/get_remote.sh"
 
 # required argument
 operation="${1}"
 # optional argument
 branch="${2:-}"
 
+remote="$($GET_REMOTE_SCRIPT)"
+echo $remote
+
 case "${operation}" in
   "pull")
-    git pull "$("$GET_ORIGIN_SCRIPT")" "$branch"
+    git pull $remote $branch
     ;;
   "push")
-    git push "$("$GET_ORIGIN_SCRIPT")" "$branch"
+    git push $remote $branch
     ;;
   "clone")
-    git clone "$("$GET_ORIGIN_SCRIPT")" "$branch"
+    git clone $remote $branch
     ;;
   *)  
     echo "Invalid operation: $operation"
