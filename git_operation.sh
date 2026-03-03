@@ -38,7 +38,6 @@ operation="${1}"
 branch="${2:-}"
 
 remote="$($GET_REMOTE_SCRIPT)"
-echo $remote
 
 case "${operation}" in
   "pull")
