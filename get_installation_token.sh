@@ -59,6 +59,6 @@ signature=$(sign_payload_with_key "${header}.${payload}")
 jwt="${header}.${payload}.${signature}"
 
 response=$(get_github_token "${jwt}")
-token=$(echo "${response}" | jq -r '.token')
+token=$(echo "${response}" | grep -o '"token"[[:space:]]*:[[:space:]]*"[^"]*"' | head -n 1 | cut -d'"' -f4)
 
 echo $token
