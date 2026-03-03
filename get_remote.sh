@@ -2,8 +2,14 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ORG="$(cat "${SCRIPT_DIR}/org.txt")"
-REPO="$(cat "${SCRIPT_DIR}/repo.txt")"
+
+PREFIX=""
+if [[ -n "${PROJECT_NAME:-}" ]]; then
+  PREFIX="${PROJECT_NAME}_"
+fi
+
+ORG="$(cat "${SCRIPT_DIR}/${PREFIX}org.txt")"
+REPO="$(cat "${SCRIPT_DIR}/${PREFIX}repo.txt")"
 TOKEN_SCRIPT="${SCRIPT_DIR}/get_installation_token.sh"
 
 get_remote() {

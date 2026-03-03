@@ -5,9 +5,14 @@ set -eo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # 環境変数
-installation_id=$(cat "${SCRIPT_DIR}/install_id.txt")
-client_id=$(cat "${SCRIPT_DIR}/app_id.txt")
-pem="$(cat "${SCRIPT_DIR}/private_key.pem")"
+PREFIX=""
+if [[ -n "${GITHUB_APP_NAME:-}" ]]; then
+  PREFIX="${GITHUB_APP_NAME}_"
+fi
+
+installation_id=$(cat "${SCRIPT_DIR}/${PREFIX}install_id.txt")
+client_id=$(cat "${SCRIPT_DIR}/${PREFIX}app_id.txt")
+pem="$(cat "${SCRIPT_DIR}/${PREFIX}private_key.pem")"
 
 now=$(date +%s)
 iat=$((now - 60)) # JWTの作成時刻は60秒前

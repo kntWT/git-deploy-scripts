@@ -1,5 +1,5 @@
-app_id.txt
-install_id.txt
-org.txt
-repo.txt
-private_key.pem
+*app_id.txt
+*install_id.txt
+*org.txt
+*repo.txt
+*private_key.pem
