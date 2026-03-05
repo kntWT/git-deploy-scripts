@@ -63,13 +63,13 @@ remote="$($GET_REMOTE_SCRIPT)"
 
 case "${OPERATION}" in
   "pull")
-    git pull "$remote" "${GIT_ARGS[@]}"
+    git pull "$remote" ${GIT_ARGS[@]+"${GIT_ARGS[@]}"}
     ;;
   "push")
-    git push "$remote" "${GIT_ARGS[@]}"
+    git push "$remote" ${GIT_ARGS[@]+"${GIT_ARGS[@]}"}
     ;;
   "clone")
-    git clone "$remote" "${GIT_ARGS[@]}"
+    git clone "$remote" ${GIT_ARGS[@]+"${GIT_ARGS[@]}"}
     ;;
   *)
     echo "Invalid operation: $OPERATION"
