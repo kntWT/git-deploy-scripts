@@ -56,7 +56,7 @@ if [[ -z "$OPERATION" ]]; then
   exit 1
 fi
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")" && pwd)"
 GET_REMOTE_SCRIPT="${SCRIPT_DIR}/get_remote.sh"
 
 remote="$($GET_REMOTE_SCRIPT)"

@@ -8,7 +8,7 @@ if [ -z "${1:-}" ]; then
 fi
 
 # 現在のディレクトリの絶対パスを取得
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")" && pwd)"
 TARGET_SCRIPT="${SCRIPT_DIR}/git_operation.sh"
 
 # コマンド名
